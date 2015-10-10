@@ -4,12 +4,29 @@
 	<title>Do You Like Me?</title>
   <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/authenticate.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+	<script>
+  		window.fbAsyncInit = function() {
+    		FB.init({
+      		appId      : 'do-you-like-me',
+      		xfbml      : true,
+      		version    : 'v2.4'
+    		});
+  		};
 
+  		(function(d, s, id){
+     		var js, fjs = d.getElementsByTagName(s)[0];
+     		if (d.getElementById(id)) {return;}
+     		js = d.createElement(s); js.id = id;
+     		js.src = "//connect.facebook.net/en_US/sdk.js";
+     		fjs.parentNode.insertBefore(js, fjs);
+   		}(document, 'script', 'facebook-jssdk'));
+	</script>
 	<nav id="main-nav">
 		Do You Like Me?
 	</nav>
@@ -18,7 +35,7 @@
 	<div id="main-content">
 		<div id="authenticate" class="popup">
       <!-- replace this! -->
-			<a href="#" class="button" id="fb-authenticate">Log In</a>
+			<a href="#" class="button" id="fb-authenticate" on-click="login()">Log In</a>
 		</div>
 		<div id="results">
 			<div class="box">
