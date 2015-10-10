@@ -1,5 +1,4 @@
 $(function(){
-	console.log("javascript works!");
 	$('#fb-authenticate').click(login);
 });
 
