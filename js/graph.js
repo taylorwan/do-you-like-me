@@ -1,10 +1,6 @@
 function getProfilePhoto(
-	FB.api('/me/picture',
-	function(response) {
-		if (response && !response.error) {
+	FB.api('/me/pictures',
+		function(response) {
 			console.log("Got profile photo");
-		} else {
-			console.log("Could not access photo");
-		}
-	});
-}
+		} else { console.log("Could not access photo");
+		}));
