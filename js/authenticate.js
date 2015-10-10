@@ -83,15 +83,18 @@
 
   function userPhotos() {
     var photoID = [];
-    FB.api('/me/photos?fields=comments.order(reverse_chronological)',
-      function(response) {
-        console.log(response);
-        console.log(response.data);
-        for (var i = 0; i < response.data.length; i++) { 
-          console.log(response.data[i]);
-          console.log(response.data[i].id);
-        }
+    FB.api('/me/photos?fields=comments.order(reverse_chronological)', function(response) {
+      for (var i = 0; i < response.data.length; i++) {
+        getLikesForPhoto(response.data[i].id + '/likes');
+      }
+    });
+    console.log(photoID);
+  }
+
+  function getLikesForPhoto(endpoint) {
+    FB.api(
+      endpoint, function(likes) {
+        console.log(likes);
       }
     );
-    console.log(photoID);
   }
