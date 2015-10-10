@@ -1,7 +1,3 @@
 $(function(){
-	$('#fb-authenticate').click(login);
+	console.log("starting with version 1");
 });
-
-function login() {
-	$('#authenticate').fadeOut();
-}
