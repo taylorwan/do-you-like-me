@@ -67,8 +67,7 @@
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
 
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
+  // process user info
   function userInfo() {
     initialLogin();
     userPhotos();
@@ -82,19 +81,48 @@
   }
 
   function userPhotos() {
-    var photoID = [];
+    var likers = {};
     FB.api('/me/photos?fields=comments.order(reverse_chronological)', function(response) {
       for (var i = 0; i < response.data.length; i++) {
-        getLikesForPhoto(response.data[i].id + '/likes');
+        var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
+        likers = addLikers(likers, likersForThisPhoto);
       }
     });
-    console.log(photoID);
+    console.log("done with processing likes");
+    console.log(likers);
   }
 
+  // figure out who likes the photos
   function getLikesForPhoto(endpoint) {
+    var likers = [];
     FB.api(
       endpoint, function(likes) {
-        console.log(likes);
+        // if photo has any likes, proceed
+        for (var i = 0; i < likes.data.length; i++) {
+          likers.push(likes[i].id);
+        }
       }
     );
+    console.log(likers);
+    return likers;
   }
+
+  function addLikers(likers, toAdd) {
+    console.log("adding the following likers:");
+    console.log(toAdd);
+    for (var i = 0; i < toAdd.length; i++) {
+      var current = toAdd[i];
+      console.log(likers[current]);
+      if (likers[current]) {
+        var currentLikes = likers[current] + 1;
+        likers[current] = currentLikes;
+      } else {
+        likers[current] = 1;
+      }
+    }
+    console.log("added likers, returning:");
+    console.log(likers);
+    return likers;
+  }
+
+
