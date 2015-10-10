@@ -86,6 +86,7 @@
     FB.api('/me/photos?fields=comments.order(reverse_chronological)',
       function(response) {
         console.log(response);
+        console.log(response.data);
         photoID = response.data.map(function(photo){
           console.log(response.id);
           return response.id;
