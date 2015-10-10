@@ -87,10 +87,10 @@
       function(response) {
         console.log(response);
         console.log(response.data);
-        photoID = response.data.map(function(photo){
-          console.log(response.id);
-          return response.id;
-        });
+        for (var i = 0; i < response.data.length; i++) { 
+          console.log(response.data[i]);
+          console.log(response.data[i].id);
+        }
       }
     );
     console.log(photoID);
