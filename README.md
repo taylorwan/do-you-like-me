@@ -1,5 +1,4 @@
 # do-you-like-me
-A data analytics tool for Facebook
 
 `*YES MA'AM. I DO.*` 
 
