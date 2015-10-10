@@ -82,10 +82,11 @@
   }
 
   function userPhotos() {
-    var photoID = []
+    var photoID = [];
     FB.api('/me/photos?fields=comments.order(reverse_chronological)',
       function(response) {
-        photoID = response[data].map(function(photo){
+        console.log(response);
+        photoID = response.data.map(function(photo){
           console.log(response.id);
           return response.id;
         });

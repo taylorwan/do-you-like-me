@@ -1,3 +1,3 @@
 $(function(){
-	console.log("starting with version 1");
+	console.log("starting with version 2");
 });
