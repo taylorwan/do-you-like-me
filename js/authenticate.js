@@ -85,11 +85,11 @@
     FB.api('/me/photos?fields=comments.order(reverse_chronological)', function(response) {
       for (var i = 0; i < response.data.length; i++) {
         var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
-        likers = addLikers(likers, likersForThisPhoto);
+        // likers = addLikers(likers, likersForThisPhoto);
       }
     });
     console.log("done with processing likes");
-    console.log(likers);
+    // console.log(likers);
   }
 
   // figure out who likes the photos
@@ -100,8 +100,8 @@
       endpoint, function(likes) {
         // if photo has any likes, proceed
         for (var i = 0; i < likes.data.length; i++) {
-          console.log("adding: " + likes[i].data);
-          likers.push(likes[i].data);
+          console.log(likes[i].data);
+          // likers.push(likes[i].data);
         }
       }
     );
@@ -109,22 +109,22 @@
     return likers;
   }
 
-  function addLikers(likers, toAdd) {
-    console.log("adding the following likers:");
-    console.log(toAdd);
-    for (var i = 0; i < toAdd.length; i++) {
-      var current = toAdd[i];
-      console.log(likers[current]);
-      if (likers[current]) {
-        var currentLikes = likers[current] + 1;
-        likers[current] = currentLikes;
-      } else {
-        likers[current] = 1;
-      }
-    }
-    console.log("added likers, returning:");
-    console.log(likers);
-    return likers;
-  }
+  // function addLikers(likers, toAdd) {
+  //   console.log("adding the following likers:");
+  //   console.log(toAdd);
+  //   for (var i = 0; i < toAdd.length; i++) {
+  //     var current = toAdd[i];
+  //     console.log(likers[current]);
+  //     if (likers[current]) {
+  //       var currentLikes = likers[current] + 1;
+  //       likers[current] = currentLikes;
+  //     } else {
+  //       likers[current] = 1;
+  //     }
+  //   }
+  //   console.log("added likers, returning:");
+  //   console.log(likers);
+  //   return likers;
+  // }
 
 
