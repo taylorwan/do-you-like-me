@@ -6,6 +6,7 @@
   <script src="js/authenticate.js"></script>
   <script src="js/main.js"></script>
   <script src="js/authenticate.js"></script>
+  <script src="js/graph.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -37,11 +38,13 @@
 	<!-- main -->
 	<div id="main-content">
 		<div id="authenticate" class="popup">
-      		<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+      <fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();"></fb:login-button>
+
 		</div>
 		<div id="results">
 			<div class="box">
 				<div class="title-wrap">Photos</div>
+				<img src="getProfilePhoto()" alt="Profile Photo"></img>
 				<table class="table table-responsive">
 					<thead>
 						<tr>
