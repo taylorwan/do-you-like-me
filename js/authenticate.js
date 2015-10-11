@@ -101,7 +101,7 @@
         // if photo has any likes, proceed
         console.log(likes);
         for (var i = 0; i < likes.data.length; i++) {
-          console.log(likes[i]);
+          console.log(likes.data[i]);
           // likers.push(likes[i].data);
         }
       }
