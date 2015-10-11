@@ -84,10 +84,12 @@
     var likers = {};
     FB.api('/me/photos?fields=comments.order(reverse_chronological)', function(response) {
       for (var i = 0; i < response.data.length; i++) {
-        var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
+        var thisLikers = [];
+        console.log("initializing this likers with:" + thislikers);
+        var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes', thisLikers);
         console.log("after getting photo");
-        console.log(likersForThisPhoto);
-        // likers = addLikers(likers, likersForThisPhoto);
+        console.log(thisLikers);
+        // likers = addLikers(likers, thisLikers);
       }
     });
     console.log("done with processing likes");
@@ -95,8 +97,7 @@
   }
 
   // figure out who likes the photos
-  function getLikesForPhoto(endpoint) {
-    var likers = [];
+  function getLikesForPhoto(endpoint, likers) {
     FB.api(
       endpoint, function(likes) {
         // if photo has any likes, proceed
