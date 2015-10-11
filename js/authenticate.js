@@ -101,6 +101,7 @@
     FB.api(
       endpoint, function(likes) {
         // if photo has any likes, proceed
+        console.log(likes.data);
         for (var i = 0; i < likes.data.length; i++) {
           likers.push(likes.data[i].name);
         }
