@@ -108,16 +108,27 @@
         console.log(likes.data[i].name);
         var name = likes.data[i].name;
         var added = false;
+        var toSort = [];
+        var numToInsert = -1;
+        var unsorted = true;
         $results.find('tbody tr').each(function(){
           if($(this).find('td:first').text() == name) {
             var $num = $(this).find('td:last');
             var count = parseInt($num.text());
             $num.text(count+1);
             added = true;
+            toSort.append($(this).detach());
+            numToInsert = num;
           }
         });
         if (added === false) {
+          unsorted = false;
           $('table tbody').append('<tr><td>'+name+'</td><td>'+1+'</td></tr>');
+        } else {
+          while( unsorted === true ) {
+            // find the correct place to insert
+            // $('[placeToInsert]').append(toSort[0]);
+          }
         }
         // singleLikers.push(likes.data[i].name);
       }
@@ -127,6 +138,18 @@
     console.log(likers);
     return likers;
   }
+
+  function sort() {
+    var $results = $('table');
+    var likesPerPerson = {}
+    $results.find('tbody tr').each(function() {
+      var name = $(this).find('td:first').text();
+      var count = parseInt($(this).find('td:last').text());
+      likesPerPerson[name] = count;
+    });
+
+  }
+
 
   // function addLikers(likers, toAdd) {
   //   console.log("adding the following likers:");
