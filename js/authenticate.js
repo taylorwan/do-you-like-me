@@ -82,35 +82,37 @@
 
   function userPhotos() {
     var likers = FB.api('/me/photos', function(response) {
+      var allPhotos = [];
       for (var i = 0; i < response.data.length; i++) {
-        var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
-        console.log("after getting photo");
-        console.log(likersForThisPhoto);
+        // var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
+        // console.log("after getting photo");
+        // console.log(likersForThisPhoto);
         // likers = addLikers(likers, thisLikers);
-        return;
+        allPhotos[allPhotos.length] = response.data[i].id;
       }
+      return allPhotos;
     });
     console.log("done with processing likes");
-    // console.log(likers);
+    console.log(likers);
   }
 
   // figure out who likes the photos
-  function getLikesForPhoto(endpoint) {
-    var likers = FB.api(endpoint, function(likes) {
-        // if photo has any likes, proceed
-        console.log(likes.data);
-        var likers = [];
-        for (var i = 0; i < likes.data.length; i++) {
-          console.log(likes.data[i].name);
-          likers.push(likes.data[i].name);
-        }
-        return likers;
-      }
-    );
-    console.log("full list");
-    console.log(likers);
-    return likers;
-  }
+  // function getLikesForPhoto(endpoint) {
+  //   var likers = FB.api(endpoint, function(likes) {
+  //       // if photo has any likes, proceed
+  //       console.log(likes.data);
+  //       var likers = [];
+  //       for (var i = 0; i < likes.data.length; i++) {
+  //         console.log(likes.data[i].name);
+  //         likers.push(likes.data[i].name);
+  //       }
+  //       return likers;
+  //     }
+  //   );
+  //   console.log("full list");
+  //   console.log(likers);
+  //   return likers;
+  // }
 
   // function addLikers(likers, toAdd) {
   //   console.log("adding the following likers:");
