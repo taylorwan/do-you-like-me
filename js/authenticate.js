@@ -89,7 +89,7 @@
         // console.log(likersForThisPhoto);
         // likers = addLikers(likers, thisLikers);
         allLikers[allLikers.length] = loadLikesForPhoto(response.data[i].id + '/likes');
-        console.log("This photo can be found at " + response.data[i].picture)
+        console.log("This photo can be found at " + response.data[i].id)
 
       }
       // console.log(allLikers);
