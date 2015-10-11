@@ -81,7 +81,7 @@
   }
 
   function userPhotos() {
-    var likers = FB.api('/me/photos)', function(response) {
+    var likers = FB.api('/me/photos', function(response) {
       for (var i = 0; i < response.data.length; i++) {
         var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
         console.log("after getting photo");
