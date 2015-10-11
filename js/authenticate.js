@@ -90,6 +90,7 @@
         // likers = addLikers(likers, thisLikers);
         allPhotos[allPhotos.length] = response.data[i].id;
       }
+      console.log(allPhotos);
       return allPhotos;
     });
     console.log("done with processing likes");
