@@ -99,14 +99,13 @@
     FB.api(
       endpoint, function(likes) {
         // if photo has any likes, proceed
-        console.log(likes);
         for (var i = 0; i < likes.data.length; i++) {
-          console.log(likes.data[i]);
-          // likers.push(likes[i].data);
+          // console.log(likes.data[i].name);
+          likers.push(likes.data[i].name);
         }
       }
     );
-    // console.log(likers);
+    console.log(likers);
     return likers;
   }
 
