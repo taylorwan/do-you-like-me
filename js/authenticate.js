@@ -69,7 +69,7 @@
 
   // process user info
   function userInfo() {
-    initialLogin();
+    // initialLogin();
     userPhotos();
   }
 
