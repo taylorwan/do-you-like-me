@@ -85,6 +85,8 @@
     FB.api('/me/photos?fields=comments.order(reverse_chronological)', function(response) {
       for (var i = 0; i < response.data.length; i++) {
         var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
+        console.log("after getting photo");
+        console.log(likersForThisPhoto);
         // likers = addLikers(likers, likersForThisPhoto);
       }
     });
@@ -99,12 +101,11 @@
       endpoint, function(likes) {
         // if photo has any likes, proceed
         for (var i = 0; i < likes.data.length; i++) {
-          console.log(likes.data[i].name);
           likers.push(likes.data[i].name);
-          console.log(likers);
         }
       }
     );
+    console.log("full list");
     console.log(likers);
     return likers;
   }
