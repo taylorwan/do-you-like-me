@@ -94,18 +94,19 @@
 
   // figure out who likes the photos
   function getLikesForPhoto(endpoint) {
-    console.log("getting likes for photo");
+    console.log("getting likes for photo with endpoint: " + endpoint);
     var likers = [];
     FB.api(
       endpoint, function(likes) {
         // if photo has any likes, proceed
+        console.log(likes);
         for (var i = 0; i < likes.data.length; i++) {
-          console.log(likes[i].data);
+          console.log(likes[i]);
           // likers.push(likes[i].data);
         }
       }
     );
-    console.log(likers);
+    // console.log(likers);
     return likers;
   }
 
