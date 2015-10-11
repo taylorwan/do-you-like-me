@@ -81,35 +81,48 @@
   }
 
   function userPhotos() {
-    var likers = FB.api('/me/photos', function(response) {
+    FB.api('/me/photos', function(response) {
       var allLikers = [];
       for (var i = 0; i < response.data.length; i++) {
-        // var likersForThisPhoto = getLikesForPhoto(response.data[i].id + '/likes');
+        // var likersForThisPhoto = loadLikesForPhoto(response.data[i].id + '/likes');
         // console.log("after getting photo");
         // console.log(likersForThisPhoto);
         // likers = addLikers(likers, thisLikers);
-        allLikers[allLikers.length] = getLikesForPhoto(response.data[i].id + '/likes');
+        allLikers[allLikers.length] = loadLikesForPhoto(response.data[i].id + '/likes');
       }
-      console.log(allLikers);
-      return allLikers;
+      // console.log(allLikers);
+      // return allLikers;
     });
-    console.log("done with processing likes");
-    console.log(likers);
+    // console.log("done with processing likes");
+    // console.log(likers);
   }
 
   // figure out who likes the photos
-  function getLikesForPhoto(endpoint) {
+  function loadLikesForPhoto(endpoint) {
+    var $results = $('table');
     var likers = FB.api(endpoint, function(likes) {
-        // if photo has any likes, proceed
-        console.log("list of likes for this photo, preprocessed:" + likes.data);
-        var likers = [];
-        for (var i = 0; i < likes.data.length; i++) {
-          console.log(likes.data[i].name);
-          likers.push(likes.data[i].name);
+      // if photo has any likes, proceed
+      console.log("list of likes for this photo, preprocessed:" + likes.data);
+      var singleLikers = [];
+      for (var i = 0; i < likes.data.length; i++) {
+        console.log(likes.data[i].name);
+        var name = likes.data[i].name;
+        var added = false;
+        $results.find('tbody tr').each(function(){
+          if($(this).find('td:first').text() == name) {
+            var $num = $(this).find('td:last');
+            var count = parseInt($num.text());
+            $num.text(count+1);
+            added = true;
+          }
+        });
+        if (added === false) {
+          $('table tbody').append('<tr><td>'+name+'</td><td>'+1+'</td></tr>');
         }
-        return likers;
+        // singleLikers.push(likes.data[i].name);
       }
-    );
+      return singleLikers;
+    });
     console.log("full list");
     console.log(likers);
     return likers;
